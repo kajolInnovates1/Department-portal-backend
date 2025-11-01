@@ -1,7 +1,7 @@
 import { Inngest } from "inngest";
 import User from "../models/User.js";
 
-export const inngest = new Inngest({ id: 'Department-portal' });
+export const inngest = new Inngest({ id: 'department-portal-app' });
 const syncUserCreation = inngest.createFunction(
     { id: 'sync-user-from-clerk' },
     { event: 'clerk/user.created' },
