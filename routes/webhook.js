@@ -8,9 +8,8 @@ router.post("/clerk", async (req, res) => {
     console.log("📩 Clerk webhook received:", event.type);
 
     try {
-        // Clerk থেকে পাওয়া event → Inngest এ পাঠাও
         await inngest.send({
-            name: event.type.replace(".", "/"), // clerk.user.created → clerk/user.created
+            name: `clerk/${event.type}`, // clerk.user.created → clerk/user.created
             data: event.data,
         });
 

@@ -1,10 +1,9 @@
 import { Inngest } from "inngest";
 import User from "../models/User.js";
 
-// Initialize Inngest client
 export const inngest = new Inngest({ id: "department-portal-app" });
 
-// ============ USER CREATE FUNCTION ============
+// ========== USER CREATE ==========
 const syncUserCreation = inngest.createFunction(
     { id: "sync-user-from-clerk" },
     { event: "clerk/user.created" },
@@ -14,7 +13,7 @@ const syncUserCreation = inngest.createFunction(
 
         const existingUser = await User.findOne({ username });
         if (existingUser) {
-            username = username + Math.floor(Math.random() * 10000);
+            username += Math.floor(Math.random() * 10000);
         }
 
         const userData = {
@@ -34,7 +33,7 @@ const syncUserCreation = inngest.createFunction(
     }
 );
 
-// ============ USER UPDATE FUNCTION ============
+// ========== USER UPDATE ==========
 const syncUserUpdation = inngest.createFunction(
     { id: "update-user-from-clerk" },
     { event: "clerk/user.updated" },
@@ -52,7 +51,7 @@ const syncUserUpdation = inngest.createFunction(
     }
 );
 
-// ============ USER DELETE FUNCTION ============
+// ========== USER DELETE ==========
 const syncUserDeletion = inngest.createFunction(
     { id: "delete-user-with-clerk" },
     { event: "clerk/user.deleted" },
