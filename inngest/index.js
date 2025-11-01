@@ -4,7 +4,7 @@ import User from "../models/User.js";
 export const inngest = new Inngest({ id: 'Department-portal' });
 const syncUserCreation = inngest.createFunction(
     { id: 'sync-user-from-clerk' },
-    { event: 'clert/user.created' },
+    { event: 'clerk/user.created' },
     async ({ event }) => {
         const { id, first_name, last_name, email_addresses, image_url } = event.data
         let username = email_addresses[0].email_address.split('@')[0]
