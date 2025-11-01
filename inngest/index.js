@@ -21,7 +21,11 @@ const syncUserCreation = inngest.createFunction(
 
         }
 
-        await User.create(userData)
+        try {
+            await User.create(userData)
+        } catch (err) {
+            console.error(err)
+        }
 
     }
 )
@@ -53,7 +57,7 @@ const syncUserDeletion = inngest.createFunction(
     }
 )
 
-export const functions = [
+export default functions = [
     syncUserCreation,
     syncUserUpdation,
     syncUserDeletion,
