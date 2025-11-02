@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import connectDB from "./configs/db.js";
+import postRouter from './routes/posts.js'
 // import connectDB from "./configs/db.js";
 import { inngest, functions } from "./inngest/index.js";
 import { serve } from "inngest/express";
@@ -21,6 +22,7 @@ app.use("/api/inngest", serve({ client: inngest, functions }));
 
 // MongoDB + Server Start
 // const startServer = async () => {
+app.use("/api/posts", postRouter);
 
 
 const PORT = process.env.PORT || 4000;
